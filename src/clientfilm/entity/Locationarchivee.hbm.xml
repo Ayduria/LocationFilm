@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Locationarchivee" table="LOCATIONARCHIVEE" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idlocation" type="string">
+            <column name="IDLOCATION" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="utilisateur" class="clientfilm.entity.Utilisateur" fetch="select">
+            <column name="IDUTILISATEUR" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="copie" class="clientfilm.entity.Copie" fetch="select">
+            <column name="IDCOPIE" length="10" />
+        </many-to-one>
+        <property name="datelocation" type="date">
+            <column name="DATELOCATION" length="7" not-null="true" />
+        </property>
+        <property name="dateretour" type="date">
+            <column name="DATERETOUR" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

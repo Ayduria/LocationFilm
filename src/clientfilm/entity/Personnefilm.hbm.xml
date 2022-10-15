@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Personnefilm" table="PERSONNEFILM" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idpersonne" type="java.lang.Long">
+            <column name="IDPERSONNE" length="10" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">sequencePersonneFilm</param>
+            </generator>
+        </id>
+        <property name="nom" type="string">
+            <column name="NOM" length="50" not-null="true" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="PRENOM" length="50" not-null="true" />
+        </property>
+        <property name="datenaissance" type="date">
+            <column name="DATENAISSANCE" length="7" not-null="true" />
+        </property>
+        <property name="lieunaissance" type="string">
+            <column name="LIEUNAISSANCE" length="50" not-null="true" />
+        </property>
+        <property name="courtebiographie" type="clob">
+            <column name="COURTEBIOGRAPHIE" not-null="true" />
+        </property>
+        <set name="scenaristefilms" table="SCENARISTEFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPERSONNE" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Scenaristefilm" />
+        </set>
+        <set name="acteurfilms" table="ACTEURFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPERSONNE" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Acteurfilm" />
+        </set>
+        <set name="films" table="FILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDREALISATEUR" length="10" />
+            </key>
+            <one-to-many class="clientfilm.entity.Film" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Genre" table="GENRE" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idgenre" type="java.lang.Long">
+            <column name="IDGENRE" length="10" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">sequenceGenre</param>
+            </generator>
+        </id>
+        <property name="descripteur" type="string">
+            <column name="DESCRIPTEUR" length="50" not-null="true" />
+        </property>
+        <set name="genrefilms" table="GENREFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDGENRE" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Genrefilm" />
+        </set>
+    </class>
+</hibernate-mapping>

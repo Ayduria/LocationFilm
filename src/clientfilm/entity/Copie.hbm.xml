@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Copie" table="COPIE" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idcopie" type="java.lang.Long">
+            <column name="IDCOPIE" length="10" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">sequenceCopie</param>
+            </generator>
+        </id>
+        <many-to-one name="film" class="clientfilm.entity.Film" fetch="select">
+            <column name="IDFILM" length="10" not-null="true" />
+        </many-to-one>
+        <property name="code" type="string">
+            <column name="CODE" length="20" not-null="true" unique="true" />
+        </property>
+        <property name="statut" type="string">
+            <column name="STATUT" length="10" />
+        </property>
+        <set name="locationarchivees" table="LOCATIONARCHIVEE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCOPIE" length="10" />
+            </key>
+            <one-to-many class="clientfilm.entity.Locationarchivee" />
+        </set>
+        <set name="locationactives" table="LOCATIONACTIVE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCOPIE" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Locationactive" />
+        </set>
+    </class>
+</hibernate-mapping>

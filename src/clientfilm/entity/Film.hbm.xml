@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Film" table="FILM" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idfilm" type="java.lang.Long">
+            <column name="IDFILM" length="10" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">sequenceFilm</param>
+            </generator>
+        </id>
+        <many-to-one name="personnefilm" class="clientfilm.entity.Personnefilm" fetch="select">
+            <column name="IDREALISATEUR" length="10" />
+        </many-to-one>
+        <property name="titre" type="string">
+            <column name="TITRE" length="50" not-null="true" />
+        </property>
+        <property name="anneeparution" type="short">
+            <column name="ANNEEPARUTION" precision="4" scale="0" not-null="true" />
+        </property>
+        <property name="langueoriginale" type="string">
+            <column name="LANGUEORIGINALE" length="50" not-null="true" />
+        </property>
+        <property name="duree" type="short">
+            <column name="DUREE" precision="3" scale="0" not-null="true" />
+        </property>
+        <property name="resumescenario" type="clob">
+            <column name="RESUMESCENARIO" not-null="true" />
+        </property>
+        <set name="scenaristefilms" table="SCENARISTEFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Scenaristefilm" />
+        </set>
+        <set name="paysfilms" table="PAYSFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Paysfilm" />
+        </set>
+        <set name="acteurfilms" table="ACTEURFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Acteurfilm" />
+        </set>
+        <set name="copies" table="COPIE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Copie" />
+        </set>
+        <set name="genrefilms" table="GENREFILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" length="10" not-null="true" />
+            </key>
+            <one-to-many class="clientfilm.entity.Genrefilm" />
+        </set>
+    </class>
+</hibernate-mapping>

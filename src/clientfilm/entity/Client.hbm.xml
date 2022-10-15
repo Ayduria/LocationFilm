@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Client" table="CLIENT" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idutilisateur" type="string">
+            <column name="IDUTILISATEUR" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="forfait" class="clientfilm.entity.Forfait" fetch="select">
+            <column name="IDFORFAIT" length="10" not-null="true" />
+        </many-to-one>
+        <property name="typecarte" type="string">
+            <column name="TYPECARTE" length="10" not-null="true" />
+        </property>
+        <property name="numerocarte" type="string">
+            <column name="NUMEROCARTE" length="20" not-null="true" />
+        </property>
+        <property name="dateexpirationcarte" type="date">
+            <column name="DATEEXPIRATIONCARTE" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

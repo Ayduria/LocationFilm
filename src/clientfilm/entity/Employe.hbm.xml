@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Employe" table="EMPLOYE" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idutilisateur" type="string">
+            <column name="IDUTILISATEUR" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="codematricule" type="int">
+            <column name="CODEMATRICULE" precision="8" scale="0" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>

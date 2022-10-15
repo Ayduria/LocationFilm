@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Genrefilm" table="GENREFILM" schema="ADMINUSER" optimistic-lock="version">
+        <composite-id name="id" class="clientfilm.entity.GenrefilmId">
+            <key-property name="idgenre" type="string">
+                <column name="IDGENRE" length="10" />
+            </key-property>
+            <key-property name="idfilm" type="string">
+                <column name="IDFILM" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="film" class="clientfilm.entity.Film" update="false" insert="false" fetch="select">
+            <column name="IDFILM" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="genre" class="clientfilm.entity.Genre" update="false" insert="false" fetch="select">
+            <column name="IDGENRE" length="10" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

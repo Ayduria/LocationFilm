@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 13, 2021 7:14:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="clientfilm.entity.Acteurfilm" table="ACTEURFILM" schema="ADMINUSER" optimistic-lock="version">
+        <id name="idacteur" type="java.lang.Long">
+            <column name="IDACTEUR" length="10" />
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">sequenceActeur</param>
+            </generator>
+        </id>
+        <many-to-one name="personnefilm" class="clientfilm.entity.Personnefilm" fetch="select">
+            <column name="IDPERSONNE" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="film" class="clientfilm.entity.Film" fetch="select">
+            <column name="IDFILM" length="10" not-null="true" />
+        </many-to-one>
+        <property name="nompersonnage" type="string">
+            <column name="NOMPERSONNAGE" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
